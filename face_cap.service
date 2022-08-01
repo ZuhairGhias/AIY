@@ -1,0 +1,18 @@
+[Unit]
+Description=Face Capture Service
+Requires=dev-vision_spicomm.device
+After=dev-vision_spicomm.device
+Wants=aiy-board-info.service
+After=aiy-board-info.service
+
+[Service]
+Type=simple
+Restart=no
+User=pi
+Environment=AIY_BOARD_NAME=AIY-Board
+EnvironmentFile=-/run/aiy-board-info
+WorkingDirectory=/home/pi/MyPy
+ExecStart=/usr/bin/python3 /home/pi/MyPy/face_cap.py
+
+[Install]
+WantedBy=multi-user.target

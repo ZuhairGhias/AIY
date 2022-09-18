@@ -27,6 +27,8 @@ BUZZER_GPIO = 22
 IMAGE_FORMAT = "jpeg"
 IMAGE_FOLDER = "./captures"
 
+SLEEP_SECONDS = 600
+
 
 def run_inference():
     """Yields (faces, (frame_width, frame_height)) tuples."""
@@ -54,7 +56,7 @@ def capture_loop():
                 photographer.shoot(camera)
                 print(faces)
                 print(frame_size)
-                sleep(5)
+                sleep(SLEEP_SECONDS)
 
 
 def main():

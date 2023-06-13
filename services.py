@@ -166,14 +166,14 @@ class Photographer(Service):
                 image = Image.open(stream)
                 draw = ImageDraw.Draw(image)
                 scale_x, scale_y = image.width / width, image.height / height
+                i = 0
                 for face in faces:
                     scaled = scale_bounding_box(face.bounding_box, scale_x, scale_y)
                     corners = bounding_extent_to_corners(scaled, image.size)
                     image2 = image.crop(corners)
                     self._draw_face(draw, face, scale_x, scale_y)
+                    image2.save(filename2 + str(i))
                 del draw
-                #image.save(filename1)
-                image2.save(filename2)
 
     def update_faces(self, faces):
         self.submit(faces)
